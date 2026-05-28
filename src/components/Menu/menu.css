@@ -1,0 +1,234 @@
+/* @import url("../window/window.css"); */
+
+.body.menu-hidden {
+   margin: 0;
+}
+
+.body.menu-active {
+   margin-left: 220px;
+}
+@media screen and (max-width: 1010px) {
+   .body.menu-active {
+      margin: 0;
+   }
+}
+@media screen and (max-width: 675px) {
+   .body.menu-active {
+      overflow: hidden;
+      touch-action: none;
+   }
+}
+
+#menu-container {
+   height: 100%;
+   position: fixed;
+   top: 0;
+   display: flex;
+   flex-direction: column;
+   z-index: 1000;
+   transition: ease 80ms;
+}
+
+#menu-container > nav {
+   flex-grow: 1;
+}
+
+body.light #menu-container {
+   /*background-color: white;*/
+   /*background-color: #f9fafb;*/
+   background-color: #ebeae5;
+   border-right: 0.05rem solid #d4d4d3;
+}
+
+body.dark #menu-container {
+   /*background-color: #151515;*/
+   background-color: #181818;
+   border-right: 0.05rem solid #2e2e2e;
+}
+
+.menu-container.hidden {
+   left: -160px;
+}
+
+.menu-container.active {
+   width: 220px;
+   left: 0;
+}
+@media screen and (max-width: 500px) {
+   .menu-container.active {
+      width: 100%;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+   }
+}
+
+.header-menu {
+   width: auto;
+   height: 48px;
+   position: static;
+   border-bottom: 0;
+   display: flex;
+}
+.header-menu-container {
+   margin: 0 20px;
+   width: 100%;
+   display: flex;
+   align-items: center;
+   /*border-bottom: 0.05rem solid #2E2E2E;*/
+}
+
+.switch-container {
+   width: 40px;
+   height: 20px;
+   position: relative;
+   border-radius: 8px;
+   display: flex;
+   align-items: center;
+   cursor: pointer;
+   transition: background-color 0.3s ease;
+}
+
+body.light .switch-container:hover {
+   background-color: #e6e6e6;
+}
+
+body.dark .switch-container:hover {
+   background-color: #262626;
+}
+
+body.light .switch-container {
+   background-color: #f0f0f0;
+   border: 1px solid #ccc;
+}
+
+body.dark .switch-container {
+   background-color: #212121;
+   border: 1px solid #353535;
+}
+
+.switch {
+   width: 16px;
+   height: 16px;
+   position: absolute;
+   margin: 0 1px;
+   border-radius: 6px;
+   transition:
+      left 0.3s ease,
+      background-color 0.3s ease;
+}
+
+.switch.light {
+   left: 0;
+   background-color: #ffffff;
+   border: 1px solid #ccc;
+}
+
+.switch.dark {
+   left: calc(95% - 18px);
+   background-color: #0f0f0f;
+   border: 1px solid #353535;
+}
+
+.nav-menu {
+   margin: 0 12px;
+}
+.subtitle-menu {
+   color: #868686;
+   font-family: "Inter", sans-serif;
+   font-size: 0.7em;
+   font-weight: 400;
+   margin: 0 5px;
+   padding: 10px 0;
+   /*border-bottom: 0.01em solid #5e5e5e;*/
+}
+.menu-list {
+   list-style: none;
+   margin: 5px 0;
+   padding: 0;
+   display: flex;
+   flex-direction: column;
+   gap: 5px;
+}
+.menu-option {
+   padding: 5px;
+   border-radius: 8px;
+   border: 0.08rem solid transparent;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   font-family: "Inter", sans-serif;
+   font-size: 0.85em;
+   user-select: none;
+   cursor: pointer;
+}
+body.light .menu-option:hover {
+   background-color: #dbd8d3;
+   border: 0.08rem solid #cecbcb;
+}
+body.dark .menu-option:hover {
+   background-color: #292929;
+   border: 0.08rem solid #3b3b3b;
+}
+.content-listitem {
+   margin-left: 3px;
+   display: flex;
+   align-items: center;
+   gap: 7px;
+}
+.body.light .content-listitem > svg > path {
+   fill: #292929;
+}
+.body.dark .content-listitem > svg > path {
+   fill: #cecece;
+}
+/* 
+.body.light .arrow-icon > .line-arrow-icon {}
+*/
+.body.dark .arrow-icon > .line-arrow-icon {
+   fill: #4f4f4f;
+}
+
+.body.light .menu-option > .content-listitem > .text-option {
+   color: #686764;
+}
+.body.dark .menu-option > .content-listitem > .text-option {
+   color: #999;
+}
+
+.footer-menu {
+   padding: 12px 0;
+   margin: 0 12px;
+   border-top: 0.01em solid #c3c3c3;
+   display: flex;
+   justify-content: center;
+}
+body.dark .footer-menu {
+   border-top: 0.01em solid #2e2e2e;
+}
+
+.about-button {
+   padding: 5px;
+   border: 1px solid #454545;
+   border-radius: 8px;
+   flex-grow: 1;
+   font-family: "Inter", sans-serif;
+   text-align: center;
+   text-decoration: none;
+   cursor: pointer;
+}
+body.light .about-button {
+   border: 1px solid #d6d6d6;
+   color: silver;
+}
+body.light .about-button:hover {
+   color: #868686;
+   background-color: #e6e6e6;
+}
+body.dark .about-button {
+   border: 1px solid #222;
+   color: #686868;
+}
+body.dark .about-button:hover {
+   color: #9f9f9f;
+   background-color: #1a1a1a;
+}
