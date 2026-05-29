@@ -1,4 +1,4 @@
-# Portfólio — React + TypeScript
+# Portfólio
 
 > *Este é o repositório do meu portfólio profissional, desenvolvido em ReactWeb para apresentar meus projetos, habilidades e experiências como desenvolvedor.*
 

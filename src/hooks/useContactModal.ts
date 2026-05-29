@@ -1,7 +1,5 @@
 // hooks/useContactModal.ts
 import { useState } from "react";
-import emailjs from "@emailjs/browser";
-import { EMAILJS_CONFIG } from "../config/emailjs";
 
 interface FormData {
   firstName: string;
@@ -61,23 +59,20 @@ export function useContactModal(onClose: () => void): UseContactModalReturn {
     setFeedback(null);
 
     try {
-      // Preparar os dados para enviar
-      const templateParams = {
-        from_name: `${formData.firstName} ${formData.lastName}`.trim(),
-        from_email: formData.email,
-        subject: formData.subject,
-        message: formData.message,
-      };
-
       // Enviar o email usando EmailJS
-      const response = await emailjs.send(
-        EMAILJS_CONFIG.SERVICE_ID,
-        EMAILJS_CONFIG.TEMPLATE_ID,
-        templateParams,
-        EMAILJS_CONFIG.PUBLIC_KEY,
-      );
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      
+      if (!response.ok) {
+        throw new Error("Erro ao enviar mensagem");
+      }
 
-      console.log("✅ Email enviado:", response);
+      console.log(response)
 
       setFeedback({
         type: "success",
