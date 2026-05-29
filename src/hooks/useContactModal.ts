@@ -59,7 +59,6 @@ export function useContactModal(onClose: () => void): UseContactModalReturn {
     setFeedback(null);
 
     try {
-      // Enviar o email usando EmailJS
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
@@ -79,10 +78,8 @@ export function useContactModal(onClose: () => void): UseContactModalReturn {
         message: "Mensagem enviada com sucesso! Entrarei em contato em breve.",
       });
 
-      // Limpar formulário
       resetForm();
 
-      // Fechar modal após 2 segundos
       setTimeout(() => {
         onClose();
       }, 2000);
