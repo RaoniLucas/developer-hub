@@ -279,15 +279,16 @@ main {
     margin: 0;
     padding: 0;
     display: flex;
-    flex-direction: column;
+    /*flex-direction: column;*/
+    flex-direction: row;
     gap: 6px;
 }
 
-@media screen and (max-width: 400px) {
+/*@media screen and (max-width: 400px) {
     .about__list {
         flex-direction: row;
     }
-}
+}*/
 
 .about__item {
     max-width: 40px;

@@ -4,6 +4,9 @@ import { Modal } from "../Modal/Modal";
 import { ContactModal } from "../Modal/ContactModal/ContactModal";
 import "./menu.css";
 
+import LinkedinSVG from "../../../public/assets/icons/LinkedinSVG";
+import GithubSVG from "../../../public/assets/icons/GithubSVG";
+
 interface MenuProps {
   isOpen: boolean;
   onToggle: () => void;
@@ -117,9 +120,35 @@ export function Menu({ isOpen, onToggle }: MenuProps) {
         </nav>
 
         <footer className="footer-menu">
-          <a className="about-button" href="#">
+          {/*<a className="about-button" href="#">
             ...
-          </a>
+          </a>*/}
+          <div className="about__details">
+            <ul className="about__list">
+              <li
+                className="about__item"
+                onClick={() =>
+                  window.open("https://linkedin.com/in/raoni-lucas", "_blank")
+                }
+              >
+                {/* LinkedIn SVG */}
+                <LinkedinSVG />
+              </li>
+
+              <li
+                className="about__item"
+                onClick={() =>
+                  window.open("https://github.com/RaoniLucas", "_blank")
+                }
+              >
+                {/* GitHub SVG */}
+                <GithubSVG />
+              </li>
+
+              {/*<li className="about__item"></li>
+              <li className="about__item"></li>*/}
+            </ul>
+          </div>
         </footer>
       </div>
 
