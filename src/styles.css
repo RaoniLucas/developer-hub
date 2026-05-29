@@ -308,10 +308,11 @@ main {
     }
 }
 body.light .about__item {
-    border: 0.05rem solid #f0f0f0;
+    /*border: 0.05rem solid #f0f0f0;*/
+    border: 0.05rem solid #d8d8d8;
 }
 body.light .about__item:hover {
-    background-color: #f0f0f0;
+    background-color: #e1e1e1;
 }
 body.dark .about__item {
     border: 0.05rem solid #212121;
