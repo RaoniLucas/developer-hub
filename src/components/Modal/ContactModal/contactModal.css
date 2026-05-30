@@ -164,15 +164,22 @@ textarea::placeholder {
 
 .contact-info__list button {
     grid-column: 1 / span 2;
-    background: gray;
+    background: #0f0f0f;
     color: white;
     border: none;
     padding: 11px;
-    border-radius: 8px;
+    border: 1px solid #303030;
+    border-radius: 12px;
     font-size: 0.9rem;
     font-weight: 500;
     cursor: pointer;
     margin-top: 10px;
+}
+
+.contact-info__list button:hover {
+    background: #a4a4a4;
+    color: black;
+    border: 1px solid #505050;
 }
 
 @media (max-width: 490px) {

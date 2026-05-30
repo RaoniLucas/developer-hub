@@ -37,6 +37,11 @@ export function ContactModal({ onClose }: ContactModalProps) {
           onClick={onClose}
           type="button"
           disabled={isSubmitting}
+          style={{
+            backgroundColor: "transparent",
+            color: "white",
+            border: "none",
+          }}
         >
           <XSVG />
         </button>
