@@ -127,7 +127,7 @@ export function ContactModal({ onClose }: ContactModalProps) {
           />
 
           <button type="submit" disabled={isSubmitting}>
-            {isSubmitting ? "Enviando..." : "Enviar Mensagem"}
+            {isSubmitting ? "Enviando..." : "Enviar"}
           </button>
         </form>
       </main>
