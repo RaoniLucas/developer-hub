@@ -21,11 +21,9 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   );
 
   useEffect(() => {
-    // Aplica a classe no body (mantém compatibilidade com todo o CSS original)
     document.body.classList.remove("light", "dark");
     document.body.classList.add(theme);
 
-    // Atualiza a meta theme-color (igual ao Theme.updateThemeColor() original)
     let meta = document.querySelector<HTMLMetaElement>(
       'meta[name="theme-color"]',
     );

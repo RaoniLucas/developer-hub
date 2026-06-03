@@ -1,4 +1,3 @@
-// components/ContactModal.tsx
 import { useContactModal } from "../../../hooks/useContactModal";
 import "./contactModal.css";
 
@@ -11,7 +10,7 @@ export function ContactModal({ onClose }: ContactModalProps) {
     useContactModal(onClose);
 
   const XSVG = () => (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
       <path
         d="M18 6L6 18"
         stroke="currentColor"
@@ -37,11 +36,6 @@ export function ContactModal({ onClose }: ContactModalProps) {
           onClick={onClose}
           type="button"
           disabled={isSubmitting}
-          style={{
-            backgroundColor: "transparent",
-            color: "white",
-            border: "none",
-          }}
         >
           <XSVG />
         </button>

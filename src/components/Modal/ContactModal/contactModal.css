@@ -49,9 +49,11 @@ body.dark .contact-info__title {
 .contact-info__close {
     position: absolute;
     left: 0;
-    margin-left: 8px;
-    background-color: rgba(255, 255, 255, 0.2);
-    border: 1px solid black;
+    margin-left: 12px;
+    background-color: transparent;
+    border: none;
+    border-radius: 5px;
+    padding: 0;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -59,8 +61,19 @@ body.dark .contact-info__title {
     transition: all 0.3s ease;
 }
 
-.contact-info__close:hover {
-    background-color: rgba(255, 255, 255, 0.3);
+body.light .contact-info__close:hover {
+    background-color: rgba(143, 143, 143, 0.3);
+}
+body.dark .contact-info__close:hover {
+    background-color: rgb(56, 56, 56);
+}
+
+body.light .contact-info__close svg path {
+    stroke: #4c4c4c;
+}
+
+body.dark .contact-info__close svg path {
+    stroke: #b3b3b3;
 }
 
 .contact-info__main {
@@ -176,7 +189,13 @@ textarea::placeholder {
     margin-top: 10px;
 }
 
-.contact-info__list button:hover {
+body.light .contact-info__list button:hover {
+    background: #a4a4a4;
+    color: black;
+    border: 1px solid #ababab;
+}
+
+body.dark .contact-info__list button:hover {
     background: #a4a4a4;
     color: black;
     border: 1px solid #505050;
