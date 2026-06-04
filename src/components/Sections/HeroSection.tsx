@@ -1,27 +1,40 @@
+import { useFitText } from "../../hooks/useFitText";
+
 export function HeroSection() {
+  const titleRef = useFitText();
+
   return (
     <section className="interfaces">
       <div className="interfaces__wrapper">
-        <h2 className="interfaces__title">
+        {/*<h2 className="interfaces__title">
           Soluções para interfaces dinâmicas e responsivas
+        </h2>*/}
+        <h2 className="interfaces__title" ref={titleRef}>
+          <span>Developer</span>
+          <span>Hub</span>
         </h2>
 
-        <div className="interfaces__columns">
-          <div className="interfaces__column interfaces__column--about">
-            <div className="about__intro">
-              <div className="about-float">
-                <div className="about">
-                  <p className="about__text-wrap">
-                    Sou estudante de Análise e Desenvolvimento de Sistemas e
-                    estou construindo minha trajetória com foco no
-                    desenvolvimento web. Ao longo do curso, passei a estudar
-                    projetos utilizando HTML, CSS e JavaScript, sempre buscando
-                    transformar teoria em soluções práticas e estruturadas.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div>
+          TESTE
+        </div>
+      </div>
+
+      {/*<hr className="interfaces__divider" />*/}
+
+      <div className="interfaces__wrapper interfaces__wrapper--bottom">
+        <p className="about__text-wrap">
+          Sou estudante de Análise e Desenvolvimento de Sistemas e estou
+          construindo minha trajetória com foco no desenvolvimento web. Ao longo
+          do curso, passei a estudar projetos utilizando HTML, CSS e JavaScript,
+          sempre buscando transformar teoria em soluções práticas e
+          estruturadas.
+        </p>
+        <div className="interfaces__name-block">
+          <span className="interfaces__role">
+            Front-End Developer / User Interface / User Experience
+          </span>
+          <span id="name">Raoni Lucas</span>
+          <span id="name">2026</span>
         </div>
       </div>
     </section>

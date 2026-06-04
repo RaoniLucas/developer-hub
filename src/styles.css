@@ -1,12 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Doto:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
+/* ============================================================
+   BASE
+   ============================================================ */
+
 html {
     scrollbar-width: thin;
 }
+
 @media screen and (max-width: 675px) {
     html,
     body {
-        height: 100%;
+        height: 100dvh;
     }
 }
 
@@ -29,10 +34,25 @@ body.dark {
     color: #ffffff;
 }
 
+#root {
+    height: 100%;
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
 .header {
     width: 100%;
     height: 48px;
-    position: absolute;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+body.menu-active .header {
+    left: 220px;
+    width: calc(100% - 220px);
 }
 
 .header-container {
@@ -54,7 +74,12 @@ body.dark {
     gap: 18px;
 }
 
-#menu-button {
+/* ============================================================
+   MENU BUTTON
+   ============================================================ */
+
+#menu-button,
+.menu-button--inside {
     background-color: transparent;
     width: 30px;
     height: 30px;
@@ -69,6 +94,24 @@ body.dark {
     z-index: 1000;
     transition: ease 80ms;
 }
+
+/* -- Visibilidade: esconde no header, aparece dentro do menu -- */
+
+.menu-button--inside {
+    display: none;
+}
+
+@media screen and (max-width: 1012px) {
+    .menu-button--header {
+        display: none;
+    }
+    .menu-button--inside {
+        display: flex;
+    }
+}
+
+/* -- Positioning (responsive) -- */
+
 @media screen and (max-width: 1010px) {
     .menu-button.hidden {
         position: relative;
@@ -79,6 +122,7 @@ body.dark {
         left: 176px;
     }
 }
+
 @media screen and (max-width: 500px) {
     .menu-button.hidden {
         position: relative;
@@ -92,71 +136,50 @@ body.dark {
     }
 }
 
-body.light #menu-button:hover {
+/* -- Hover & active states -- */
+
+body.light #menu-button:hover,
+body.light .menu-button--inside:hover {
     background-color: #dddbd3;
     border: 0.05rem solid #d9d9d9;
 }
-body.dark #menu-button:hover {
+
+body.dark #menu-button:hover,
+body.dark .menu-button--inside:hover {
     background-color: #212121;
     border: 0.05rem solid #2b2b2b;
 }
 
+/* ============================================================
+   MENU ICONS
+   ============================================================ */
+
+/* -- Border icon -- */
+
 body.light #border-menu-icon {
     stroke: #737373;
 }
-body.light .line-menu-icon {
-    fill: #737373;
-}
-body.light .details-menu-icon {
-    fill: #737373;
-}
-body.light #menu-button:active #border-menu-icon {
-    stroke: black;
-}
-body.light #menu-button:active .line-menu-icon {
-    fill: black;
-}
-body.light #menu-button:active .details-menu-icon {
-    fill: black;
-}
-
 body.dark #border-menu-icon {
     stroke: #949494;
 }
-body.dark .line-menu-icon {
-    fill: #949494;
+body.light #menu-button:hover #border-menu-icon,
+body.light .menu-button--inside:hover #border-menu-icon {
+    stroke: #000000;
 }
-body.dark .details-menu-icon {
-    fill: #949494;
+body.dark #menu-button:hover #border-menu-icon,
+body.dark .menu-button--inside:hover #border-menu-icon {
+    stroke: #ffffff;
 }
-body.dark #menu-button:active #border-menu-icon {
+body.light #menu-button:active #border-menu-icon,
+body.light .menu-button--inside:active #border-menu-icon {
+    stroke: black;
+}
+body.dark #menu-button:active #border-menu-icon,
+body.dark .menu-button--inside:active #border-menu-icon {
     stroke: white;
 }
-body.dark #menu-button:active .line-menu-icon {
-    fill: white;
-}
-body.dark #menu-button:active .details-menu-icon {
-    fill: white;
-}
 
-body.light .chevron-icon {
-    stroke: #737373;
-}
-body.dark .chevron-icon {
-    stroke: #949494;
-}
-body.light #menu-button:hover .chevron-icon {
-    stroke: #000000;
-}
-body.dark #menu-button:hover .chevron-icon {
-    stroke: #ffffff;
-}
-body.light #menu-button:active .chevron-icon {
-    stroke: #000000;
-}
-body.dark #menu-button:active .chevron-icon {
-    stroke: #ffffff;
-}
+/* -- Line icon -- */
 
 .line-menu-icon {
     transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
@@ -168,88 +191,218 @@ body.light .line-menu-icon {
 body.dark .line-menu-icon {
     fill: #949494;
 }
-body.light #menu-button:hover .line-menu-icon {
+body.light #menu-button:hover .line-menu-icon,
+body.light .menu-button--inside:hover .line-menu-icon {
     fill: #000000;
 }
-body.dark #menu-button:hover .line-menu-icon {
+body.dark #menu-button:hover .line-menu-icon,
+body.dark .menu-button--inside:hover .line-menu-icon {
     fill: #ffffff;
 }
+body.light #menu-button:active .line-menu-icon,
+body.light .menu-button--inside:active .line-menu-icon {
+    fill: black;
+}
+body.dark #menu-button:active .line-menu-icon,
+body.dark .menu-button--inside:active .line-menu-icon {
+    fill: white;
+}
 
-#menu-button:hover .line-menu-icon.close {
+#menu-button:hover .line-menu-icon.close,
+.menu-button--inside:hover .line-menu-icon.close {
     transform: translateX(10px);
 }
 .line-menu-icon.open {
     transform: translateX(0px);
 }
-#menu-button:hover .line-menu-icon.open {
+#menu-button:hover .line-menu-icon.open,
+.menu-button--inside:hover .line-menu-icon.open {
     transform: translateX(-8px);
 }
 
-body.light #border-menu-icon {
+/* -- Details icon -- */
+
+body.light .details-menu-icon {
+    fill: #737373;
+}
+body.dark .details-menu-icon {
+    fill: #949494;
+}
+body.light #menu-button:active .details-menu-icon,
+body.light .menu-button--inside:active .details-menu-icon {
+    fill: black;
+}
+body.dark #menu-button:active .details-menu-icon,
+body.dark .menu-button--inside:active .details-menu-icon {
+    fill: white;
+}
+
+/* -- Chevron icon -- */
+
+body.light .chevron-icon {
     stroke: #737373;
 }
-body.dark #border-menu-icon {
+body.dark .chevron-icon {
     stroke: #949494;
 }
-body.light #menu-button:hover #border-menu-icon {
+body.light #menu-button:hover .chevron-icon,
+body.light .menu-button--inside:hover .chevron-icon {
     stroke: #000000;
 }
-body.dark #menu-button:hover #border-menu-icon {
+body.dark #menu-button:hover .chevron-icon,
+body.dark .menu-button--inside:hover .chevron-icon {
+    stroke: #ffffff;
+}
+body.light #menu-button:active .chevron-icon,
+body.light .menu-button--inside:active .chevron-icon {
+    stroke: #000000;
+}
+body.dark #menu-button:active .chevron-icon,
+body.dark .menu-button--inside:active .chevron-icon {
     stroke: #ffffff;
 }
 
+/* ============================================================
+   MAIN / LAYOUT
+   ============================================================ */
+
 main {
-    padding-top: 48px;
+    height: 100%;
 }
 
 .interfaces {
-    padding: 20px 0;
-    display: flow-root;
-    font-family: "Inter", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
+    align-content: c;
+    justify-items: first baseline;
+    justify-content: space-between;
+    height: 100%;
 }
+
 @media screen and (max-width: 1800px) {
     .interfaces {
-        padding: 8px 50px;
     }
 }
+
 @media screen and (max-width: 1620px) {
     .interfaces {
-        padding: 8px 50px;
     }
 }
+
 @media screen and (max-width: 675px) {
     .interfaces {
-        padding: 5px 20px;
     }
+}
+
+/*.interfaces__wrapper:nth-child(1) {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+}*/
+
+.interfaces__wrapper:nth-child(1) {
+    padding-top: 48px;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: 0;
 }
 
 .interfaces__title {
-    font-size: 40px;
-    letter-spacing: -1px;
+    line-height: 0.88;
+    letter-spacing: -0.03em;
     user-select: none;
+    width: 100%;
+    margin: 0;
+    display: block;
+    font-family: "Inter", sans-serif;
+    font-weight: -1px;
 }
 
-.interfaces__wrapper {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flow-root;
+.interfaces__title span {
+    display: block;
+    white-space: nowrap;
 }
 
-/*.interfaces__columns {
-    border-radius: 20px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 5px;
+.interfaces__wrapper:nth-child(2) {
+    display: flex;
+    /*justify-content: space-between;*/
 }
-@media screen and (max-width: 850px) {
-    .interfaces__columns {
-        grid-template-columns: 1fr;
-    }
-}*/
+
+.interfaces__columns:nth-child(2) {
+    height: max-content;
+    margin: 16px;
+    display: flex;
+    flex-direction: column;
+}
 
 .interfaces__column--about {
     display: block;
 }
+
+/*.interfaces__divider {
+    border: none;
+    border-top: 0.05rem solid #d8d8d8;
+    margin: 0;
+}
+
+body.dark .interfaces__divider {
+    border-top-color: #212121;
+}*/
+
+body.light .interfaces__wrapper {
+    border-top: 1px solid #d8d8d8;
+}
+
+body.dark .interfaces__wrapper {
+    border-top: 1px solid #212121;
+}
+
+.interfaces__wrapper--bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+}
+
+@media screen and (max-width: 558px) {
+    .interfaces__wrapper--bottom {
+        justify-content: center;
+    }
+}
+
+.interfaces__name-block {
+    margin: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    flex-shrink: 0;
+}
+
+.interfaces__role {
+    font-size: 11px;
+    color: #737373;
+    margin-bottom: 4px;
+}
+
+@media screen and (max-width: 636px) {
+    .interfaces__role {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 558px) {
+    .interfaces__name-block {
+        display: none;
+    }
+}
+
+/* ============================================================
+   ABOUT SECTION
+   ============================================================ */
 
 .about__intro {
     display: flow-root;
@@ -259,11 +412,13 @@ main {
 .about-float {
     float: left;
 }
+
 .about-float .about {
     display: flex;
     gap: 12px;
     flex-direction: row;
 }
+
 @media screen and (max-width: 400px) {
     .about-float .about {
         flex-direction: column;
@@ -274,66 +429,23 @@ main {
     display: flex;
     justify-content: center;
 }
+
 .about__list {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
-    /*flex-direction: column;*/
     flex-direction: row;
     gap: 6px;
 }
 
-/*@media screen and (max-width: 400px) {
-    .about__list {
-        flex-direction: row;
-    }
-}*/
-
-.about__item {
-    max-width: 40px;
-    max-height: 40px;
-    width: 12vw;
-    height: 12vw;
-    border-radius: 9px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-}
-@media screen and (max-width: 400px) {
-    .about__item {
-        max-width: 70px;
-        max-height: 70px;
-    }
-}
-body.light .about__item {
-    /*border: 0.05rem solid #f0f0f0;*/
-    border: 0.05rem solid #d8d8d8;
-}
-body.light .about__item:hover {
-    background-color: #e1e1e1;
-}
-body.dark .about__item {
-    border: 0.05rem solid #212121;
-}
-body.dark .about__item:hover {
-    background-color: #212121;
-}
-
-.about-float .about__item svg path {
-    fill: currentColor;
-}
-body.light .about-float .about__item svg path {
-    fill: #000000;
-}
-body.dark .about-float .about__item svg path {
-    fill: #ffffff;
-}
+/* -- Description text -- */
 
 .about__text-wrap {
+    width: auto;
+    max-width: 400px;
     text-align: justify;
-    margin: 0;
+    margin: 16px;
     font-weight: 200;
     font-family: "FreeSans", sans-serif;
     font-size: larger;
@@ -348,21 +460,44 @@ body.dark .about__text-wrap {
     color: #ffffff;
 }
 
+@media screen and (max-width: 750px) {
+    .about__text-wrap {
+        font-size: calc(8px + 0.6vw);
+    }
+}
+
+@media screen and (max-width: 636px) {
+    .about__text-wrap {
+        font-size: calc(14px + 0.6vw);
+    }
+}
+
+/* ============================================================
+   TOOLS SECTION
+   ============================================================ */
+
 .tools__sections {
     display: flex;
 }
+
 .tools__title {
     margin: 0;
     user-select: none;
 }
+
 .tools__div {
     flex-grow: 1;
 }
+
+/* ============================================================
+   DYNAMIC INTERFACES
+   ============================================================ */
 
 .dynamic-interfaces__title {
     font-weight: 600;
     user-select: none;
 }
+
 body.light .dynamic-interfaces__title {
     color: #2b2b2b;
 }

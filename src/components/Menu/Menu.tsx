@@ -2,6 +2,7 @@ import { useTheme } from "../../contexts/ThemeContext";
 import { useMenu } from "../../hooks/useMenu";
 import { Modal } from "../Modal/Modal";
 import { ContactModal } from "../Modal/ContactModal/ContactModal";
+import MenuIcon from "../../../public/assets/icons/MenuIcon";
 import "./menu.css";
 
 import LinkedinSVG from "../../../public/assets/icons/LinkedinSVG";
@@ -27,6 +28,13 @@ export function Menu({ isOpen, onToggle }: MenuProps) {
       >
         <header className="header-menu">
           <div className="header-menu-container">
+            <button
+              className={`menu-button menu-button--inside ${isOpen ? "active" : "hidden"}`}
+              onClick={onToggle}
+            >
+              <MenuIcon isMenuOpen={isOpen} />
+            </button>
+
             <span className="switch-container" onClick={toggleTheme}>
               <div className={`switch ${theme}`} />
             </span>
@@ -99,19 +107,6 @@ export function Menu({ isOpen, onToggle }: MenuProps) {
           <ul className="menu-list">
             <li className="menu-option">
               <div className="content-listitem">
-                {/*<svg
-                  version="1.1"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="15"
-                  height="15"
-                  viewBox="0 0 512 512"
-                >
-                  <path
-                    d="M0 0 C4.74424521 2.63569178 7.61931493 5.6079448 9.375 10.875 C9.74357422 16.21554687 9.80078125 17.328125 8.5659123 24.71468057 C2.83242323 29.84885259 -2.25170898 34.88989258 -3.0147937 35.65823425 C-3.77787842 36.42657593 -4.56408691 37.21820068 -7.07562113 39.74288421 C-9.59790477 42.25649955 -12.12109375 44.76953125 -13.8750372 46.52549646 C-15.62853518 48.28190672 -17.38160706 50.03874207 -21.05106042 53.71261159 C-24.72586848 57.38101672 -28.40454102 61.0456543 -33.12030748 65.74430438 C-37.82239127 70.4562743 -42.52062893 75.1724596 -46.1362774 78.79894328 C-49.75903413 82.41825786 -53.38398933 86.03543663 -55.12094448 87.77039037 C-56.8556734 89.50757584 -58.58813286 91.24701881 -61.00787205 93.67437048 C-63.43700903 96.09190773 -65.86889648 98.50708008 -66.58334427 99.22760056 C-67.29779205 99.94812103 -68.03388977 100.69047546 -72.86372546 105.45894558 C-76.57363146 108.13959133 -83.5625 108.25 -88.33730817 108.14357783 C-90.97221681 107.09292805 -94.625 103.875 -98.20962449 99.90284854 C-99.76420277 96.90846617 -99.875 91.5625 -99.91367188 90.45455078 C-99.953125 89.32421875 -99.00248653 82.2283816 -93.97057158 77.78620951 C-89.14355469 72.98950195 -88.38382858 72.2229126 -87.62410248 71.45632324 C-86.84135437 70.66650391 -84.33415479 68.14104085 -81.81606311 65.62678173 C-79.296875 63.11328125 -77.54636559 61.35821 -75.79622849 59.60276733 C-74.04644775 57.8469696 -70.3795712 54.17116289 -66.70707319 50.5010864 C-63.03076172 46.8347168 -58.32349966 42.13894653 -53.63235279 37.42758136 C-48.94544601 32.71148396 -45.33563802 29.08331869 -41.71655299 25.46452051 C-38.09470367 21.84837914 -36.3613054 20.11513412 -34.63100462 18.37878552 C-32.90389252 16.6392765 -30.48675059 14.20723594 -28.05717681 11.78832203 C-25.62402344 9.37231445 -24.91519516 8.65381821 -24.20636688 7.93532196 C-23.47605896 7.1950531 -16.49153227 0.3130432 -9.95697474 -3.09009561 C0 0 Z"
-                    fill="#000000"
-                    transform="translate(133.625,370.125)"
-                  />
-                </svg>*/}
                 <span className="text-option">Atualizações</span>
               </div>
               <ArrowIcon />
@@ -120,9 +115,6 @@ export function Menu({ isOpen, onToggle }: MenuProps) {
         </nav>
 
         <footer className="footer-menu">
-          {/*<a className="about-button" href="#">
-            ...
-          </a>*/}
           <div className="about__details">
             <ul className="about__list">
               <li
@@ -131,7 +123,6 @@ export function Menu({ isOpen, onToggle }: MenuProps) {
                   window.open("https://linkedin.com/in/raoni-lucas", "_blank")
                 }
               >
-                {/* LinkedIn SVG */}
                 <LinkedinSVG />
               </li>
 
@@ -141,12 +132,8 @@ export function Menu({ isOpen, onToggle }: MenuProps) {
                   window.open("https://github.com/RaoniLucas", "_blank")
                 }
               >
-                {/* GitHub SVG */}
                 <GithubSVG />
               </li>
-
-              {/*<li className="about__item"></li>
-              <li className="about__item"></li>*/}
             </ul>
           </div>
         </footer>

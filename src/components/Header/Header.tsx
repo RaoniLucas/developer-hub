@@ -1,8 +1,8 @@
-import MenuIcon from '../../../public/assets/icons/MenuIcon';
+import MenuIcon from "../../../public/assets/icons/MenuIcon";
 
 interface HeaderProps {
-  isMenuOpen: boolean
-  onToggleMenu: () => void
+  isMenuOpen: boolean;
+  onToggleMenu: () => void;
 }
 
 export function Header({ isMenuOpen, onToggleMenu }: HeaderProps) {
@@ -12,15 +12,16 @@ export function Header({ isMenuOpen, onToggleMenu }: HeaderProps) {
         <div className="user-profile-container">
           <button
             id="menu-button"
-            className={`menu-button ${isMenuOpen ? 'active' : 'hidden'}`}
+            className={`menu-button menu-button--header ${isMenuOpen ? "active" : "hidden"}`}
             onClick={onToggleMenu}
           >
             <MenuIcon isMenuOpen={isMenuOpen} />
           </button>
-
-          <span id="name">Raoni Lucas</span>
+        </div>
+        <div>
+          <span>2026</span>
         </div>
       </div>
     </header>
-  )
+  );
 }
