@@ -54,7 +54,7 @@ body.dark #menu-container {
 }
 
 .menu-container.hidden {
-    left: -160px;
+    left: -161px;
 }
 
 .menu-container.active {
