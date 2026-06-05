@@ -25,7 +25,7 @@ export function useFitText() {
       const spans = el.querySelectorAll<HTMLElement>("span");
 
       let low = 1;
-      let high = 500;
+      let high = 400;
 
       while (low < high - 1) {
         const mid = Math.floor((low + high) / 2);

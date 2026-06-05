@@ -303,6 +303,7 @@ main {
 }*/
 
 .interfaces__wrapper:nth-child(1) {
+    margin: 0 16px;
     padding-top: 48px;
     display: flex;
     flex: 1;
@@ -311,7 +312,7 @@ main {
     min-height: 0;
 }
 
-.interfaces__title {
+/*.interfaces__title {
     line-height: 0.88;
     letter-spacing: -0.03em;
     user-select: none;
@@ -320,11 +321,33 @@ main {
     display: block;
     font-family: "Inter", sans-serif;
     font-weight: -1px;
-}
+}*/
 
+.interfaces__title {
+    width: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    align-items: center;
+    font-family: "ClashDisplay-Semibold", sans-serif;
+    font-weight: 800;
+    line-height: 0.88;
+    letter-spacing: -0.03em;
+    -webkit-user-select: none;
+    user-select: none;
+}
+@media screen and (max-width: 675px) {
+}
 .interfaces__title span {
     display: block;
     white-space: nowrap;
+}
+.interfaces__title span:first-child {
+    align-self: center; /* DEVEL<>PER na esquerda */
+}
+.interfaces__title span:last-child {
+    align-self: flex-end; /* HUB na direita */
 }
 
 .interfaces__wrapper:nth-child(2) {
@@ -364,13 +387,16 @@ body.dark .interfaces__wrapper {
 .interfaces__wrapper--bottom {
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: start;
     gap: 24px;
 }
 
 @media screen and (max-width: 558px) {
     .interfaces__wrapper--bottom {
-        justify-content: center;
+        /*justify-content: center;*/
+        flex-direction: column;
+        align-items: end;
+        /*align-items: center;*/
     }
 }
 
@@ -388,15 +414,27 @@ body.dark .interfaces__wrapper {
     margin-bottom: 4px;
 }
 
+@media screen and (max-width: 750px) {
+    .interfaces__role,
+    .name {
+        font-size: calc(4px + 1vw);
+    }
+}
+
 @media screen and (max-width: 636px) {
-    .interfaces__role {
-        display: none;
+    .interfaces__role,
+    .name {
+        font-size: calc(4px + 0.6vw);
     }
 }
 
 @media screen and (max-width: 558px) {
-    .interfaces__name-block {
+    /*.interfaces__name-block {
         display: none;
+    }*/
+    .interfaces__role,
+    .name {
+        font-size: calc(6px + 1vw);
     }
 }
 
@@ -446,7 +484,7 @@ body.dark .interfaces__wrapper {
     max-width: 400px;
     text-align: justify;
     margin: 16px;
-    font-weight: 200;
+    font-weight: 400;
     font-family: "FreeSans", sans-serif;
     font-size: larger;
     user-select: none;
@@ -468,7 +506,15 @@ body.dark .about__text-wrap {
 
 @media screen and (max-width: 636px) {
     .about__text-wrap {
+        /*font-size: calc(14px + 0.6vw);*/
+        font-size: calc(6px + 0.6vw);
+    }
+}
+
+@media screen and (max-width: 559px) {
+    .about__text-wrap {
         font-size: calc(14px + 0.6vw);
+        align-self: center;
     }
 }
 

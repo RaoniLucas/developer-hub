@@ -1,14 +1,17 @@
-import { useState } from 'react'
-import { ThemeProvider } from './contexts/ThemeContext'
-import { Header } from './components/Header/Header'
-import { Menu } from './components/Menu/Menu'
-import { HeroSection } from './components/Sections/HeroSection'
-import './styles.css'
+import "./styles/fonts/ClashDisplay_Complete/WEB/css/clash-display.css";
+
+import "./styles/styles.css";
+
+import { useState } from "react";
+import { ThemeProvider } from "./contexts/ThemeContext";
+import { Header } from "./components/Header/Header";
+import { Menu } from "./components/Menu/Menu";
+import { HeroSection } from "./components/Sections/HeroSection";
 
 export function App() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const handleToggleMenu = () => setIsMenuOpen(prev => !prev)
+  const handleToggleMenu = () => setIsMenuOpen((prev) => !prev);
 
   return (
     <ThemeProvider>
@@ -19,12 +22,10 @@ export function App() {
       <main>
         <HeroSection />
 
-        <section>
-          {/* Apresentação de Projetos — em breve */}
-        </section>
+        <section>{/* Apresentação de Projetos — em breve */}</section>
       </main>
 
       <footer />
     </ThemeProvider>
-  )
+  );
 }

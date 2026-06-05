@@ -10,13 +10,12 @@ export function HeroSection() {
           Soluções para interfaces dinâmicas e responsivas
         </h2>*/}
         <h2 className="interfaces__title" ref={titleRef}>
-          <span>Developer</span>
-          <span>Hub</span>
+          <span>DEVEL{"<>"}PER</span>
+          <br />
+          <span>{"HUB"}</span>
         </h2>
 
-        <div>
-          TESTE
-        </div>
+        {/*<div>teste</div>*/}
       </div>
 
       {/*<hr className="interfaces__divider" />*/}
@@ -33,8 +32,8 @@ export function HeroSection() {
           <span className="interfaces__role">
             Front-End Developer / User Interface / User Experience
           </span>
-          <span id="name">Raoni Lucas</span>
-          <span id="name">2026</span>
+          <span className="name">Raoni Lucas</span>
+          <span className="name">2026</span>
         </div>
       </div>
     </section>
