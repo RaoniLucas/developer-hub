@@ -327,9 +327,9 @@ main {
     width: 100%;
     margin: 0;
     display: flex;
+    align-items: center;
     flex-direction: column;
     flex-shrink: 0;
-    align-items: center;
     font-family: "ClashDisplay-Semibold", sans-serif;
     font-weight: 800;
     line-height: 0.88;
@@ -344,7 +344,7 @@ main {
     white-space: nowrap;
 }
 .interfaces__title span:first-child {
-    align-self: center; /* DEVEL<>PER na esquerda */
+    align-self: center;
 }
 .interfaces__title span:last-child {
     align-self: flex-end; /* HUB na direita */

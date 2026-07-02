@@ -1,4 +1,4 @@
-import MenuIcon from "../../../public/assets/icons/MenuIcon";
+import MenuIcon from "../../assets/icons/MenuIcon";
 
 interface HeaderProps {
   isMenuOpen: boolean;

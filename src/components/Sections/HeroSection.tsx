@@ -1,7 +1,7 @@
-import { useFitText } from "../../hooks/useFitText";
+// import { useFitText } from "../../hooks/useFitText";
 
 export function HeroSection() {
-  const titleRef = useFitText();
+  // const titleRef = useFitText();
 
   return (
     <section className="interfaces">
@@ -9,7 +9,7 @@ export function HeroSection() {
         {/*<h2 className="interfaces__title">
           Soluções para interfaces dinâmicas e responsivas
         </h2>*/}
-        <h2 className="interfaces__title" ref={titleRef}>
+        <h2 className="interfaces__title">
           <span>DEVEL{"<>"}PER</span>
           <br />
           <span>{"HUB"}</span>

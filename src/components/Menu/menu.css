@@ -215,12 +215,49 @@ body.dark .menu-option:hover {
     gap: 7px;
 }
 
-.body.light .content-listitem > svg > path {
+.menu-option:nth-child(1) .content-listitem {
+    gap: 9px;
+}
+
+.menu-option:nth-child(1) .content-listitem > svg > path {
+    margin: 3px;
+}
+
+.menu-option:nth-child(2) .content-listitem > svg > path {
+    margin: 0;
+}
+
+.body.light .menu-option:nth-child(1) .content-listitem > svg > path {
+    /*fill: #292929;*/
+    stroke: #333333;
+}
+.body.dark .menu-option:nth-child(1) .content-listitem > svg > path {
+    /*fill: #cecece;*/
+    stroke: #fff;
+}
+
+.body.light .menu-option:nth-child(1) .content-listitem > svg > circle {
     fill: #292929;
 }
-.body.dark .content-listitem > svg > path {
+.body.dark .menu-option:nth-child(1) .content-listitem > svg > circle {
     fill: #cecece;
 }
+
+.body.light .menu-option:nth-child(2) .content-listitem > svg > path {
+    fill: #292929;
+    /*stroke: #333333;*/
+}
+.body.dark .menu-option:nth-child(2) .content-listitem > svg > path {
+    fill: #cecece;
+    /*stroke: #fff;*/
+}
+
+/*.body.light .menu-option:nth-child(2) .content-listitem > svg > circle {
+    fill: #292929;
+}
+.body.dark .menu-option:nth-child(2) .content-listitem > svg > circle {
+    fill: #cecece;
+}*/
 
 .body.dark .arrow-icon > .line-arrow-icon {
     fill: #4f4f4f;
