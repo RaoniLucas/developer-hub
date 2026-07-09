@@ -1,5 +1,5 @@
 import { useContactModal } from "../../../hooks/useContactModal";
-import "./contactModal.css";
+import "./ContactModal.css";
 
 interface ContactModalProps {
   onClose: () => void;
@@ -43,19 +43,14 @@ export function ContactModal({ onClose }: ContactModalProps) {
 
       <main className="contact-info__main">
         {feedback && (
-          <div
+          <div className="contact-info__feedback"
             style={{
-              padding: "12px",
-              marginBottom: "15px",
-              borderRadius: "8px",
               backgroundColor:
                 feedback.type === "success" ? "#d4edda" : "#f8d7da",
               color: feedback.type === "success" ? "#155724" : "#721c24",
               border: `1px solid ${
                 feedback.type === "success" ? "#c3e6cb" : "#f5c6cb"
               }`,
-              fontSize: "0.9rem",
-              textAlign: "center",
             }}
           >
             {feedback.message}

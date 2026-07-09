@@ -3,7 +3,7 @@ import { useMenu } from "../../hooks/useMenu";
 import { Modal } from "../Modal/Modal";
 import { ContactModal } from "../Modal/ContactModal/ContactModal";
 import MenuIcon from "../../assets/icons/MenuIcon";
-import "./menu.css";
+import "./Menu.css";
 
 import LinkedinSVG from "../../assets/icons/LinkedinSVG";
 import GithubSVG from "../../assets/icons/GithubSVG";

@@ -10,9 +10,9 @@ export function HeroSection() {
           Soluções para interfaces dinâmicas e responsivas
         </h2>*/}
         <h2 className="interfaces__title">
-          <span>DEVEL{"<>"}PER</span>
+          <span>Developer</span>
           <br />
-          <span>{"HUB"}</span>
+          <span>Hub</span>
         </h2>
 
         {/*<div>teste</div>*/}

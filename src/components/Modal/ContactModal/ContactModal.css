@@ -18,6 +18,7 @@ body.dark .contact-info {
     color: white;
 }
 
+/* HEADER */
 .contact-info__header {
     width: auto;
     height: auto;
@@ -40,12 +41,15 @@ body.dark .contact-info__header {
     font-weight: 400;
     text-align: center;
 }
+
 body.light .contact-info__title {
     color: silver;
 }
+
 body.dark .contact-info__title {
     color: silver;
 }
+
 .contact-info__close {
     position: absolute;
     left: 0;
@@ -64,6 +68,7 @@ body.dark .contact-info__title {
 body.light .contact-info__close:hover {
     background-color: rgba(143, 143, 143, 0.3);
 }
+
 body.dark .contact-info__close:hover {
     background-color: rgb(56, 56, 56);
 }
@@ -76,13 +81,16 @@ body.dark .contact-info__close svg path {
     stroke: #b3b3b3;
 }
 
+/* MAIN */
 .contact-info__main {
     padding: 6px 16px 16px 16px;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
 
+/* FORM */
 .contact-info__list {
     width: 100%;
     list-style: none;
@@ -93,6 +101,7 @@ body.dark .contact-info__close svg path {
     gap: 10px;
 }
 
+/* LABELS */
 label {
     color: #8a8a8a;
     margin: 7px 0 3px 0;
@@ -101,6 +110,7 @@ label {
     font-weight: 400;
 }
 
+/* INPUTS E TEXTAREA */
 input,
 textarea {
     padding: 10px 12px;
@@ -115,13 +125,16 @@ body.light input {
     background-color: #eee;
     color: black;
 }
+
 body.light textarea {
     background-color: #eee;
 }
+
 body.dark input {
     background-color: #2e2e2e;
     color: white;
 }
+
 body.dark textarea {
     background-color: #2e2e2e;
     color: white;
@@ -137,6 +150,7 @@ textarea::placeholder {
     color: #747982;
 }
 
+/* GRID DO FORMULÁRIO */
 .contact-info__list label:nth-child(1) {
     grid-column: 1 / span 2;
 }
@@ -175,6 +189,7 @@ textarea::placeholder {
     resize: none;
 }
 
+/* BOTÃO ENVIAR */
 .contact-info__list button {
     grid-column: 1 / span 2;
     background: #0f0f0f;
@@ -187,6 +202,7 @@ textarea::placeholder {
     font-weight: 500;
     cursor: pointer;
     margin-top: 10px;
+    transition: all 0.3s ease;
 }
 
 body.light .contact-info__list button:hover {
@@ -201,6 +217,70 @@ body.dark .contact-info__list button:hover {
     border: 1px solid #505050;
 }
 
+.contact-info__list button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* ============================================ */
+/* FEEDBACK - MENSAGENS ABAIXO DO BOTÃO */
+/* ============================================ */
+
+/* Container do feedback */
+.contact-info__feedback {
+    width: 95%;
+    grid-column: 1 / span 2;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    text-align: center;
+    margin-bottom: 8px;
+    animation: fadeIn 0.3s ease-in-out;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+/* Feedback de SUCESSO - Light Mode */
+.contact-info__feedback--success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+/* Feedback de ERRO - Light Mode */
+.contact-info__feedback--error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Feedback de SUCESSO - Dark Mode */
+body.dark .contact-info__feedback--success {
+    background-color: #1e3a2a;
+    color: #a8e6cf;
+    border: 1px solid #2d5a3d;
+}
+
+/* Feedback de ERRO - Dark Mode */
+body.dark .contact-info__feedback--error {
+    background-color: #3a1e1e;
+    color: #f8a5a5;
+    border: 1px solid #5a2d2d;
+}
+
+/* ANIMAÇÃO DO FEEDBACK */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* RESPONSIVIDADE */
 @media (max-width: 490px) {
     .contact-info__list {
         width: 100%;
@@ -217,7 +297,8 @@ body.dark .contact-info__list button:hover {
     .contact-info__list input:nth-child(7),
     .contact-info__list label:nth-child(8),
     .contact-info__list textarea,
-    .contact-info__list button {
+    .contact-info__list button,
+    .contact-info__feedback {
         grid-column: 1;
     }
 
@@ -228,5 +309,12 @@ body.dark .contact-info__list button:hover {
 
     .contact-info__main {
         padding: 6px 12px 12px 12px;
+    }
+
+    /* Ajuste do feedback no mobile */
+    .contact-info__feedback {
+        padding: 10px 14px;
+        font-size: 0.85rem;
+        margin-top: 6px;
     }
 }
