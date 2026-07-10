@@ -3,6 +3,54 @@
 export function HeroSection() {
   // const titleRef = useFitText();
 
+  const CodeLogo = () => {
+    return (
+      <svg
+        viewBox="0 0 1080 120"
+        className="code-logo"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <style>{`
+          .code-logo {
+            width: 100%;
+            /* max-width: 1000px; */
+            height: auto;
+            display: block;
+          }
+
+          .code {
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: clamp(18px, 6vw, 48px);
+            font-weight: 500;
+          }
+
+          @media (min-width: 600px) {
+            .code {
+              font-size: clamp(36px, 6vw, 56px);
+            }
+          }
+
+          .tag {
+            fill: #cfcfcf;
+          }
+
+          .text {
+            fill: #4DA3FF;
+          }
+        `}</style>
+
+        <text x="20" y="75" className="code">
+          <tspan className="tag">&lt;</tspan>
+          <tspan className="text">Developer Hub</tspan>
+          <tspan className="tag">&gt;&lt;/</tspan>
+          <tspan className="text">Developer Hub</tspan>
+          <tspan className="tag">&gt;</tspan>
+        </text>
+      </svg>
+    );
+  };
+
+
   return (
     <section className="interfaces">
       <div className="interfaces__wrapper">
@@ -10,12 +58,13 @@ export function HeroSection() {
           Soluções para interfaces dinâmicas e responsivas
         </h2>*/}
         <h2 className="interfaces__title">
-          <span>Developer</span>
-          <br />
-          <span>Hub</span>
+          Developer
+          Hub
         </h2>
 
-        {/*<div>teste</div>*/}
+        <div>
+          <CodeLogo />
+        </div>
       </div>
 
       {/*<hr className="interfaces__divider" />*/}
