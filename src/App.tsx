@@ -6,7 +6,8 @@ import { useState } from "react";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { Header } from "./components/Header/Header";
 import { Menu } from "./components/Menu/Menu";
-import { HeroSection } from "./components/Sections/HeroSection";
+import { HeroSection } from "./components/Sections/HeroSection/HeroSection";
+import { DetailSection } from "./components/Sections/DetailSection/DetailSection";
 
 export function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -21,8 +22,7 @@ export function App() {
 
       <main>
         <HeroSection />
-
-        <section>{/* Apresentação de Projetos — em breve */}</section>
+        <DetailSection />
       </main>
 
       <footer />

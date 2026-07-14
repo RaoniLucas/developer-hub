@@ -1,4 +1,6 @@
+import { useScrollPosition } from "../../hooks/useScrollPosition";
 import MenuIcon from "../../assets/icons/MenuIcon";
+import "./Header.css";
 
 interface HeaderProps {
   isMenuOpen: boolean;
@@ -6,8 +8,10 @@ interface HeaderProps {
 }
 
 export function Header({ isMenuOpen, onToggleMenu }: HeaderProps) {
+  const isScrolled = useScrollPosition(50);
+
   return (
-    <header className="header">
+    <header className={`header ${isScrolled ? "header-scrolled" : ""}`}>
       <div className="header-container">
         <div className="user-profile-container">
           <button

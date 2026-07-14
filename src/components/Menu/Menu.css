@@ -360,3 +360,10 @@ body.light .about-float .about__item svg path {
 body.dark .about-float .about__item svg path {
     fill: #ffffff;
 }
+
+.about__list {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 6px;
+}

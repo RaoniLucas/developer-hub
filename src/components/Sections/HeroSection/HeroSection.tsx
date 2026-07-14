@@ -1,8 +1,6 @@
-// import { useFitText } from "../../hooks/useFitText";
+import "./HeroSection.css";
 
 export function HeroSection() {
-  // const titleRef = useFitText();
-
   const CodeLogo = () => {
     return (
       <svg
@@ -10,35 +8,6 @@ export function HeroSection() {
         className="code-logo"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <style>{`
-          .code-logo {
-            width: 100%;
-            /* max-width: 1000px; */
-            height: auto;
-            display: block;
-          }
-
-          .code {
-            font-family: 'JetBrains Mono', 'Fira Code', monospace;
-            font-size: clamp(18px, 6vw, 48px);
-            font-weight: 500;
-          }
-
-          @media (min-width: 600px) {
-            .code {
-              font-size: clamp(36px, 6vw, 56px);
-            }
-          }
-
-          .tag {
-            fill: #cfcfcf;
-          }
-
-          .text {
-            fill: #4DA3FF;
-          }
-        `}</style>
-
         <text x="20" y="75" className="code">
           <tspan className="tag">&lt;</tspan>
           <tspan className="text">Developer Hub</tspan>
@@ -50,13 +19,9 @@ export function HeroSection() {
     );
   };
 
-
   return (
     <section className="interfaces">
       <div className="interfaces__wrapper">
-        {/*<h2 className="interfaces__title">
-          Soluções para interfaces dinâmicas e responsivas
-        </h2>*/}
         <h2 className="interfaces__title">
           Developer
           Hub
@@ -66,8 +31,6 @@ export function HeroSection() {
           <CodeLogo />
         </div>
       </div>
-
-      {/*<hr className="interfaces__divider" />*/}
 
       <div className="interfaces__wrapper interfaces__wrapper--bottom">
         <p className="about__text-wrap">

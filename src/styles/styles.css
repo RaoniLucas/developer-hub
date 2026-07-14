@@ -6,6 +6,8 @@
 
 html {
     scrollbar-width: thin;
+    height: 100%;
+    overflow: hidden; /* Importante: evita scroll duplo */
 }
 
 @media screen and (max-width: 675px) {
@@ -19,9 +21,28 @@ body {
     height: 100dvh;
     position: relative;
     margin: 0;
+    overflow: hidden; /* Remove scroll do body */
     transition:
         background-color 0.3s ease,
         margin ease 80ms;
+}
+
+/* Remover scrollbars em alguns navegadores para um visual mais limpo */
+html::-webkit-scrollbar {
+    width: 8px;
+}
+
+html::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+html::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
 
 body.light {
@@ -36,13 +57,22 @@ body.dark {
 
 #root {
     height: 100%;
+    overflow-y: auto; /* Scroll no root */
+    scroll-snap-type: y mandatory; /* Snap no root */
+    scroll-behavior: smooth;
 }
+
+/* ============================================================
+   HEADER (comentado - movido para Header.css)
+   ============================================================ */
+
+/* ... resto do código ... */
 
 /* ============================================================
    HEADER
    ============================================================ */
 
-.header {
+/*.header {
     width: 100%;
     height: 48px;
     position: fixed;
@@ -72,7 +102,7 @@ body.menu-active .header {
     display: flex;
     align-items: center;
     gap: 18px;
-}
+}*/
 
 /* ============================================================
    MENU BUTTON
@@ -263,263 +293,7 @@ body.dark .menu-button--inside:active .chevron-icon {
 }
 
 /* ============================================================
-   MAIN / LAYOUT
-   ============================================================ */
-
-main {
-    height: 100%;
-}
-
-.interfaces {
-    display: flex;
-    flex-direction: column;
-    align-items: space-between;
-    align-content: c;
-    justify-items: first baseline;
-    justify-content: space-between;
-    height: 100%;
-}
-
-@media screen and (max-width: 1800px) {
-    .interfaces {
-    }
-}
-
-@media screen and (max-width: 1620px) {
-    .interfaces {
-    }
-}
-
-@media screen and (max-width: 675px) {
-    .interfaces {
-    }
-}
-
-/*.interfaces__wrapper:nth-child(1) {
-    display: flex;
-    align-items: center;
-    text-align: center;
-    height: 100%;
-}*/
-
-.interfaces__wrapper:nth-child(1) {
-    margin: 0 16px;
-    padding-top: 48px;
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    align-items: flex-start;
-    min-height: 0;
-}
-
-/*.interfaces__title {
-    line-height: 0.88;
-    letter-spacing: -0.03em;
-    user-select: none;
-    width: 100%;
-    margin: 0;
-    display: block;
-    font-family: "Inter", sans-serif;
-    font-weight: -1px;
-}*/
-
-.interfaces__title {
-    width: 100%;
-    font-size: 15vw;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    flex-shrink: 0;
-    font-family: "ClashDisplay-Medium", sans-serif;
-    line-height: 0.88;
-    /*letter-spacing: -0.03em;*/
-    -webkit-user-select: none;
-    user-select: none;
-}
-@media screen and (max-width: 675px) {
-}
-.interfaces__title span {
-    display: block;
-    white-space: nowrap;
-}
-.interfaces__title span:first-child {
-    align-self: center;
-}
-.interfaces__title span:last-child {
-    align-self: flex-end; /* HUB na direita */
-}
-
-.interfaces__wrapper:nth-child(2) {
-    display: flex;
-    /*justify-content: space-between;*/
-}
-
-.interfaces__columns:nth-child(2) {
-    height: max-content;
-    margin: 16px;
-    display: flex;
-    flex-direction: column;
-}
-
-.interfaces__column--about {
-    display: block;
-}
-
-/*.interfaces__divider {
-    border: none;
-    border-top: 0.05rem solid #d8d8d8;
-    margin: 0;
-}
-
-body.dark .interfaces__divider {
-    border-top-color: #212121;
-}*/
-
-body.light .interfaces__wrapper {
-    border-top: 1px solid #d8d8d8;
-}
-
-body.dark .interfaces__wrapper {
-    border-top: 1px solid #212121;
-}
-
-.interfaces__wrapper--bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: start;
-    gap: 24px;
-}
-
-@media screen and (max-width: 558px) {
-    .interfaces__wrapper--bottom {
-        /*justify-content: center;*/
-        flex-direction: column;
-        align-items: end;
-        /*align-items: center;*/
-    }
-}
-
-.interfaces__name-block {
-    margin: 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    flex-shrink: 0;
-}
-
-.interfaces__role {
-    font-size: 11px;
-    color: #737373;
-    margin-bottom: 4px;
-}
-
-@media screen and (max-width: 750px) {
-    .interfaces__role,
-    .name {
-        font-size: calc(4px + 1vw);
-    }
-}
-
-@media screen and (max-width: 636px) {
-    .interfaces__role,
-    .name {
-        font-size: calc(4px + 0.6vw);
-    }
-}
-
-@media screen and (max-width: 558px) {
-    /*.interfaces__name-block {
-        display: none;
-    }*/
-    .interfaces__role,
-    .name {
-        font-size: calc(6px + 1vw);
-    }
-}
-
-/* ============================================================
-   ABOUT SECTION
-   ============================================================ */
-
-.about__intro {
-    display: flow-root;
-    min-width: 0;
-}
-
-.about-float {
-    float: left;
-}
-
-.about-float .about {
-    display: flex;
-    gap: 12px;
-    flex-direction: row;
-}
-
-@media screen and (max-width: 400px) {
-    .about-float .about {
-        flex-direction: column;
-    }
-}
-
-.about__details {
-    display: flex;
-    justify-content: center;
-}
-
-.about__list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: row;
-    gap: 6px;
-}
-
-/* -- Description text -- */
-
-.about__text-wrap {
-    width: auto;
-    max-width: 400px;
-    text-align: justify;
-    margin: 16px;
-    font-weight: 400;
-    font-family: "FreeSans", sans-serif;
-    font-size: larger;
-    user-select: none;
-    display: block;
-}
-
-body.light .about__text-wrap {
-    color: #000000;
-}
-body.dark .about__text-wrap {
-    color: #ffffff;
-}
-
-@media screen and (max-width: 750px) {
-    .about__text-wrap {
-        font-size: calc(8px + 0.6vw);
-    }
-}
-
-@media screen and (max-width: 636px) {
-    .about__text-wrap {
-        /*font-size: calc(14px + 0.6vw);*/
-        font-size: calc(6px + 0.6vw);
-    }
-}
-
-@media screen and (max-width: 559px) {
-    .about__text-wrap {
-        font-size: calc(14px + 0.6vw);
-        align-self: center;
-    }
-}
-
-/* ============================================================
-   TOOLS SECTION
+   TOOLS SECTION (mantido para referência)
    ============================================================ */
 
 .tools__sections {
@@ -546,4 +320,8 @@ body.dark .about__text-wrap {
 
 body.light .dynamic-interfaces__title {
     color: #2b2b2b;
+}
+
+main {
+    height: 100%;
 }
