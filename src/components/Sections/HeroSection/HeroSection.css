@@ -39,7 +39,7 @@
    ============================================================ */
 
 .interfaces__title {
-    width: 100%;
+    /*width: 100%;*/
     font-size: 15vw;
     margin: 0;
     display: flex;

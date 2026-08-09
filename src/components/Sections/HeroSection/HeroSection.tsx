@@ -1,34 +1,32 @@
 import "./HeroSection.css";
 
 export function HeroSection() {
-  const CodeLogo = () => {
-    return (
-      <svg
-        viewBox="0 0 1080 120"
-        className="code-logo"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <text x="20" y="75" className="code">
-          <tspan className="tag">&lt;</tspan>
-          <tspan className="text">Developer Hub</tspan>
-          <tspan className="tag">&gt;&lt;/</tspan>
-          <tspan className="text">Developer Hub</tspan>
-          <tspan className="tag">&gt;</tspan>
-        </text>
-      </svg>
-    );
-  };
-
   return (
     <section className="interfaces">
       <div className="interfaces__wrapper">
         <h2 className="interfaces__title">
           Developer
+          <br />
           Hub
         </h2>
 
         <div>
-          <CodeLogo />
+          <span>
+            {/*<CodeLogo />*/}
+            <span>&lt;</span>
+            <span>UserInterface</span>
+            <span>&gt;&lt;/</span>
+            <span>UserInterface</span>
+            <span>&gt;</span>
+          </span>
+          <span>
+            {/*<CodeLogo />*/}
+            <span>&lt;</span>
+            <span>UserExperience</span>
+            <span>&gt;&lt;/</span>
+            <span>UserExperience</span>
+            <span>&gt;</span>
+          </span>
         </div>
       </div>
 

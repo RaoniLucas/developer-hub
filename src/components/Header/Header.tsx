@@ -23,7 +23,7 @@ export function Header({ isMenuOpen, onToggleMenu }: HeaderProps) {
           </button>
         </div>
         <div>
-          <span>2026</span>
+          <span>{ }</span>
         </div>
       </div>
     </header>
