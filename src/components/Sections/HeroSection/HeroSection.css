@@ -198,6 +198,9 @@ body.dark .about__text-wrap {
     font-size: 1.3rem;
     border-radius: 6px;
     user-select: none;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
 }
 @media screen and (max-width: 720px) {
     .tech-tags {

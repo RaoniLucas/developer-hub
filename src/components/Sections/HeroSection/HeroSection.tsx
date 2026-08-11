@@ -18,18 +18,18 @@ const tagTargets: Target[] = [
   {
     segments: [
       { text: "<", className: "tech-tags__bracket" },
-      { text: "UserInterface", className: "tech-tags__name" },
+      { text: "user-interface", className: "tech-tags__name" },
       { text: "></", className: "tech-tags__bracket" },
-      { text: "UserInterface", className: "tech-tags__name" },
+      { text: "user-interface", className: "tech-tags__name" },
       { text: ">", className: "tech-tags__bracket" },
     ],
   },
   {
     segments: [
       { text: "<", className: "tech-tags__bracket" },
-      { text: "UserExperience", className: "tech-tags__name" },
+      { text: "user-experience", className: "tech-tags__name" },
       { text: "></", className: "tech-tags__bracket" },
-      { text: "UserExperience", className: "tech-tags__name" },
+      { text: "user-experience", className: "tech-tags__name" },
       { text: ">", className: "tech-tags__bracket" },
     ],
   },
@@ -70,7 +70,6 @@ export function HeroSection() {
           >
             {renderSegments(tagTargets[0].segments, revealed[2])}
           </span>
-          <br />
           <span
             className={`tech-tags__group ${activeIndex === 3 ? "typewriter-cursor" : ""}`}
           >
