@@ -7,7 +7,7 @@
    MAIN / LAYOUT
    ============================================================ */
 
-.interfaces {
+/*.interfaces {
     display: flex;
     flex-direction: column;
     align-items: space-between;
@@ -18,6 +18,16 @@
     scroll-snap-align: start;
     scroll-snap-stop: always;
     overflow-y: auto;
+}*/
+
+.interfaces {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    overflow-y: auto;
+    overflow-x: hidden; /* <-- adicione isso */
 }
 
 /* ============================================================
@@ -32,22 +42,51 @@
     flex-direction: column;
     align-items: flex-start;
     min-height: 0;
+    gap: 30px;
 }
 
 /* ============================================================
    TITLE
    ============================================================ */
 
+/*
 .interfaces__title {
-    /*width: 100%;*/
-    font-size: 15vw;
     margin: 0;
     display: flex;
-    align-items: center;
     flex-direction: column;
     flex-shrink: 0;
     font-family: "ClashDisplay-Medium", sans-serif;
-    line-height: 0.88;
+    font-weight: lighter;
+    line-height: 0.75;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.interfaces__title span {
+    display: block;
+    width: fit-content; /* garante que o scrollWidth medido seja o do texto, não do container 
+}
+.interfaces__title span:nth-child(1) { font-size: 15vw; }  
+.interfaces__title span:nth-child(2) { font-size: 15vw; }
+*/
+
+/*.interfaces__title span:first-child {
+    text-align: center;
+}
+
+.interfaces__title span:last-child {
+    text-align: right;
+}*/
+
+.interfaces__title {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    font-family: "ClashDisplay-Medium", sans-serif;
+    font-weight: lighter;
+    line-height: 0.75;
+    width: 100%;
     -webkit-user-select: none;
     user-select: none;
 }
@@ -55,14 +94,7 @@
 .interfaces__title span {
     display: block;
     white-space: nowrap;
-}
-
-.interfaces__title span:first-child {
-    align-self: center;
-}
-
-.interfaces__title span:last-child {
-    align-self: flex-end; /* HUB na direita */
+    width: fit-content;
 }
 
 /* ============================================================
@@ -108,7 +140,7 @@ body.dark .interfaces__wrapper {
 }
 
 .interfaces__role {
-    font-size: 11px;
+    font-size: clamp(10px, 1.5vw, 14px);
     color: #737373;
     margin-bottom: 4px;
 }
@@ -130,7 +162,7 @@ body.dark .interfaces__wrapper {
 @media screen and (max-width: 558px) {
     .interfaces__role,
     .name {
-        font-size: calc(6px + 1vw);
+        font-size: clamp(11px, 1.8vw, 14px);
     }
 }
 
@@ -145,7 +177,7 @@ body.dark .interfaces__wrapper {
     margin: 16px;
     font-weight: 400;
     font-family: "FreeSans", sans-serif;
-    font-size: larger;
+    font-size: clamp(15px, 1.2vw, 18px);
     user-select: none;
     display: block;
 }
@@ -181,28 +213,40 @@ body.dark .about__text-wrap {
    CODE LOGO (SVG)
    ============================================================ */
 
-.code-logo {
-    width: 100%;
-    height: auto;
-    display: block;
+/* Cores exatas do VS Code One Dark Pro */
+.tech-tags {
+    gap: 0.75rem;
+    font-family: "Fira Code", "Cascadia Code", monospace;
+    font-size: 1.3rem;
+    border-radius: 6px;
 }
-
-.code {
-    font-family: "JetBrains Mono", "Fira Code", monospace;
-    font-size: clamp(18px, 6vw, 48px);
-    font-weight: 500;
+@media screen and (max-width: 720px) {
+    .tech-tags {
+        gap: 0.75rem;
+        font-size: 0.875rem;
+    }
 }
-
-@media (min-width: 600px) {
-    .code {
-        font-size: clamp(36px, 6vw, 56px);
+@media screen and (max-width: 590px) {
+    .tech-tags {
+        gap: 0.75rem;
+        font-size: 0.875rem;
     }
 }
 
-.tag {
-    fill: #cfcfcf;
+.tech-tags__group {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.0625rem;
+    border-radius: 4px;
+    /*padding: 0.1875rem 0.5rem;*/
 }
 
-.text {
-    fill: #4da3ff;
+.tech-tags__bracket {
+    color: #6c7086;
+    font-weight: 300;
+}
+
+.tech-tags__name {
+    color: #437dd7;
+    font-weight: 500;
 }
