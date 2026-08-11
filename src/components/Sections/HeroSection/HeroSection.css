@@ -7,19 +7,6 @@
    MAIN / LAYOUT
    ============================================================ */
 
-/*.interfaces {
-    display: flex;
-    flex-direction: column;
-    align-items: space-between;
-    align-content: c;
-    justify-items: first baseline;
-    justify-content: space-between;
-    height: 100%;
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
-    overflow-y: auto;
-}*/
-
 .interfaces {
     display: flex;
     flex-direction: column;
@@ -48,35 +35,6 @@
 /* ============================================================
    TITLE
    ============================================================ */
-
-/*
-.interfaces__title {
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    flex-shrink: 0;
-    font-family: "ClashDisplay-Medium", sans-serif;
-    font-weight: lighter;
-    line-height: 0.75;
-    -webkit-user-select: none;
-    user-select: none;
-}
-
-.interfaces__title span {
-    display: block;
-    width: fit-content; /* garante que o scrollWidth medido seja o do texto, não do container 
-}
-.interfaces__title span:nth-child(1) { font-size: 15vw; }  
-.interfaces__title span:nth-child(2) { font-size: 15vw; }
-*/
-
-/*.interfaces__title span:first-child {
-    text-align: center;
-}
-
-.interfaces__title span:last-child {
-    text-align: right;
-}*/
 
 .interfaces__title {
     margin: 0;
