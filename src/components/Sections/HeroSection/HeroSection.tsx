@@ -1,20 +1,23 @@
 import { useLayoutEffect, useRef } from "react";
 import "./HeroSection.css";
 
-function useFitTextGroup({ minSize = 20, maxSize = 500 } = {}) {
-  const containerRef = useRef(null);
+function useFitTextGroup({
+  minSize = 20,
+  maxSize = 500,
+}: { minSize?: number; maxSize?: number } = {}) {
+  const containerRef = useRef<HTMLHeadingElement>(null);
 
   useLayoutEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
-    const spans = Array.from(container.children);
+    const spans = Array.from(container.children) as HTMLElement[];
     if (spans.length === 0) return;
 
     const fit = () => {
       const targetWidth = container.clientWidth;
       if (targetWidth === 0) return;
-      
+
       spans.forEach((el) => (el.style.fontSize = `${maxSize}px`));
       const widths = spans.map((el) => el.scrollWidth);
       const widestNatural = Math.max(...widths);
@@ -27,6 +30,8 @@ function useFitTextGroup({ minSize = 20, maxSize = 500 } = {}) {
     };
 
     fit();
+
+    if (typeof ResizeObserver === "undefined") return;
 
     const resizeObserver = new ResizeObserver(fit);
     resizeObserver.observe(container);
