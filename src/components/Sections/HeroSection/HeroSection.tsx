@@ -88,7 +88,7 @@ export function HeroSection() {
         </p>
         <div className="interfaces__name-block">
           <span className="interfaces__role">
-            Front-End Developer / User Interface / User Experience
+            Front-End Developer / UI / UX
           </span>
           <span className="name">Raoni Lucas</span>
           <span className="name">2026</span>

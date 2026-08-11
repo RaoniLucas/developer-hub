@@ -29,9 +29,11 @@ body {
         margin ease 80ms;
 }
 
+
 /* Remover scrollbars em alguns navegadores para um visual mais limpo */
 html::-webkit-scrollbar {
     width: 8px;
+    width: 0%;
 }
 
 html::-webkit-scrollbar-track {
