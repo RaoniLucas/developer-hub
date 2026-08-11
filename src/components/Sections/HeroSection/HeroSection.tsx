@@ -1,76 +1,80 @@
-import { useLayoutEffect, useRef } from "react";
 import "./HeroSection.css";
+import { useFitToWidth } from "../../../hooks/useFitToWidth";
+import {
+  useTypewriterSequence,
+  renderSegments,
+  type Target,
+} from "../../../hooks/useTypewriter";
 
-function useFitTextGroup({
-  minSize = 20,
-  maxSize = 500,
-}: { minSize?: number; maxSize?: number } = {}) {
-  const containerRef = useRef<HTMLHeadingElement>(null);
+/* ============================================================
+   DADOS DO TYPEWRITER
+   ============================================================ */
+const titleTargets: Target[] = [
+  { segments: [{ text: "developer" }] },
+  { segments: [{ text: "hub" }] },
+];
 
-  useLayoutEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
+const tagTargets: Target[] = [
+  {
+    segments: [
+      { text: "<", className: "tech-tags__bracket" },
+      { text: "UserInterface", className: "tech-tags__name" },
+      { text: "></", className: "tech-tags__bracket" },
+      { text: "UserInterface", className: "tech-tags__name" },
+      { text: ">", className: "tech-tags__bracket" },
+    ],
+  },
+  {
+    segments: [
+      { text: "<", className: "tech-tags__bracket" },
+      { text: "UserExperience", className: "tech-tags__name" },
+      { text: "></", className: "tech-tags__bracket" },
+      { text: "UserExperience", className: "tech-tags__name" },
+      { text: ">", className: "tech-tags__bracket" },
+    ],
+  },
+];
 
-    const spans = Array.from(container.children) as HTMLElement[];
-    if (spans.length === 0) return;
-
-    const fit = () => {
-      const targetWidth = container.clientWidth;
-      if (targetWidth === 0) return;
-
-      spans.forEach((el) => (el.style.fontSize = `${maxSize}px`));
-      const widths = spans.map((el) => el.scrollWidth);
-      const widestNatural = Math.max(...widths);
-      if (widestNatural === 0) return;
-
-      let newSize = (targetWidth / widestNatural) * maxSize;
-      newSize = Math.min(Math.max(newSize, minSize), maxSize);
-
-      spans.forEach((el) => (el.style.fontSize = `${newSize}px`));
-    };
-
-    fit();
-
-    if (typeof ResizeObserver === "undefined") return;
-
-    const resizeObserver = new ResizeObserver(fit);
-    resizeObserver.observe(container);
-
-    if (document.fonts) {
-      document.fonts.ready.then(fit);
-    }
-
-    return () => resizeObserver.disconnect();
-  }, [minSize, maxSize]);
-
-  return containerRef;
-}
+// título (índices 0,1) + tags (índices 2,3) digitados em uma única sequência
+const allTargets: Target[] = [...titleTargets, ...tagTargets];
 
 export function HeroSection() {
-  const titleRef = useFitTextGroup({ minSize: 24, maxSize: 500 });
+  const { containerRef: titleRef, fontSize } = useFitToWidth(
+    titleTargets.map((t) => t.segments.map((s) => s.text).join("")),
+    { minSize: 24, maxSize: 500 }
+  );
+
+  const { revealed, activeIndex } = useTypewriterSequence(allTargets, {
+    speed: 55,
+    startDelay: 300,
+    pause: 200,
+  });
 
   return (
     <section className="interfaces">
       <div className="interfaces__wrapper">
-        <h2 className="interfaces__title" ref={titleRef}>
-          <span>developer</span>
-          <span>_hub</span>
+        <h2 className="interfaces__title" ref={titleRef} style={{ fontSize }}>
+          <span className={activeIndex === 0 ? "typewriter-cursor--underline" : undefined}>
+            {renderSegments(titleTargets[0].segments, revealed[0])}
+          </span>
+          {/* activeIndex >= 1: o cursor aparece assim que "_hub" começa a
+              ser digitado e continua piscando para sempre, mesmo depois
+              que as tech-tags já tiverem terminado de digitar */}
+          <span className={activeIndex >= 1 ? "typewriter-cursor--underline" : undefined}>
+            {renderSegments(titleTargets[1].segments, revealed[1])}
+          </span>
         </h2>
         <div className="tech-tags">
-          <span className="tech-tags__group">
-            <span className="tech-tags__bracket">&lt;</span>
-            <span className="tech-tags__name">UserInterface</span>
-            <span className="tech-tags__bracket">&gt;&lt;/</span>
-            <span className="tech-tags__name">UserInterface</span>
-            <span className="tech-tags__bracket">&gt;</span>
+          <span
+            className={`tech-tags__group ${activeIndex === 2 ? "typewriter-cursor" : ""}`}
+          >
+            {renderSegments(tagTargets[0].segments, revealed[2])}
           </span>
           <br />
-          <span className="tech-tags__group">
-            <span className="tech-tags__bracket">&lt;</span>
-            <span className="tech-tags__name">UserExperience</span>
-            <span className="tech-tags__bracket">&gt;&lt;/</span>
-            <span className="tech-tags__name">UserExperience</span>
-            <span className="tech-tags__bracket">&gt;</span>
+          <span
+            className={`tech-tags__group ${activeIndex === 3 ? "typewriter-cursor" : ""}`}
+          >
+            {renderSegments(tagTargets[1].segments, revealed[3])}
           </span>
         </div>
       </div>

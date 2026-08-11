@@ -1,4 +1,3 @@
-/* Adicionar estilizações relacionadas aos elementos presente no componente HeroSection */
 /* ============================================================
    HERO SECTION
    ============================================================ */
@@ -49,12 +48,33 @@
     user-select: none;
 }
 
-.interfaces__title span {
+.interfaces__title > span {
     display: block;
     white-space: nowrap;
     width: fit-content;
 }
 
+/* Cursor "|" das tech-tags — aparece só enquanto está digitando aquela linha */
+.typewriter-cursor::after {
+    content: "|";
+    display: inline-block;
+    margin-left: 2px;
+    animation: hero-blink 0.9s step-start infinite;
+}
+
+/* Cursor "_" do título — usado na linha "_hub", fica piscando pra sempre */
+.typewriter-cursor--underline::after {
+    content: "_";
+    display: inline-block;
+    margin-left: 2px;
+    animation: hero-blink 0.9s step-start infinite;
+}
+
+@keyframes hero-blink {
+    50% {
+        opacity: 0;
+    }
+}
 /* ============================================================
    BORDER DIVIDERS
    ============================================================ */
@@ -177,6 +197,7 @@ body.dark .about__text-wrap {
     font-family: "Fira Code", "Cascadia Code", monospace;
     font-size: 1.3rem;
     border-radius: 6px;
+    user-select: none;
 }
 @media screen and (max-width: 720px) {
     .tech-tags {
@@ -196,7 +217,6 @@ body.dark .about__text-wrap {
     align-items: center;
     gap: 0.0625rem;
     border-radius: 4px;
-    /*padding: 0.1875rem 0.5rem;*/
 }
 
 .tech-tags__bracket {
