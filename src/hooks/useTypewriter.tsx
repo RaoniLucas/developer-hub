@@ -3,38 +3,61 @@ import { useEffect, useState } from "react";
 export type Segment = { text: string; className?: string };
 export type Target = { segments: Segment[] };
 
+type TypewriterOptions = {
+  speed?: number;
+  startDelay?: number;
+  pause?: number;
+  enabled?: boolean;
+};
+
 export function useTypewriterSequence(
   targets: Target[],
   {
     speed = 45,
     startDelay = 300,
     pause = 250,
-  }: { speed?: number; startDelay?: number; pause?: number } = {}
+    enabled = true,
+  }: TypewriterOptions = {}
 ) {
-  const [revealed, setRevealed] = useState<number[]>(() => targets.map(() => 0));
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [revealed, setRevealed] = useState<number[]>(() =>
+    targets.map(() => 0)
+  );
+  const [activeIndex, setActiveIndex] = useState(-1);
 
   useEffect(() => {
     let cancelled = false;
-    let timeoutId: ReturnType<typeof setTimeout>;
+    let timeoutId: ReturnType<typeof setTimeout> | undefined;
 
-    const totalLength = (t: Target) =>
-      t.segments.reduce((sum, s) => sum + s.text.length, 0);
+    setRevealed(targets.map(() => 0));
+    setActiveIndex(-1);
+
+    if (!enabled || targets.length === 0) {
+      return () => {
+        cancelled = true;
+        if (timeoutId) clearTimeout(timeoutId);
+      };
+    }
+
+    const totalLength = (target: Target) =>
+      target.segments.reduce((sum, segment) => sum + segment.text.length, 0);
 
     const typeTarget = (index: number) => {
       if (cancelled || index >= targets.length) return;
+
       setActiveIndex(index);
       const total = totalLength(targets[index]);
       let count = 0;
 
       const step = () => {
         if (cancelled) return;
+
         count++;
-        setRevealed((prev) => {
-          const next = [...prev];
+        setRevealed((previous) => {
+          const next = [...previous];
           next[index] = count;
           return next;
         });
+
         if (count < total) {
           timeoutId = setTimeout(step, speed);
         } else if (index + 1 < targets.length) {
@@ -44,28 +67,38 @@ export function useTypewriterSequence(
         }
       };
 
-      timeoutId = setTimeout(step, speed);
+      if (total === 0) {
+        timeoutId = setTimeout(() => typeTarget(index + 1), pause);
+      } else {
+        timeoutId = setTimeout(step, speed);
+      }
     };
 
     timeoutId = setTimeout(() => typeTarget(0), startDelay);
 
     return () => {
       cancelled = true;
-      clearTimeout(timeoutId);
+      if (timeoutId) clearTimeout(timeoutId);
     };
-  }, [targets, speed, startDelay, pause]);
+  }, [targets, speed, startDelay, pause, enabled]);
 
-  return { revealed, activeIndex, isDone: activeIndex >= targets.length - 1 };
+  return {
+    revealed,
+    activeIndex,
+    isDone: activeIndex >= targets.length,
+  };
 }
 
 export function renderSegments(segments: Segment[], revealedCount: number) {
   let remaining = revealedCount;
-  return segments.map((seg, i) => {
-    const take = Math.max(0, Math.min(seg.text.length, remaining));
-    remaining -= seg.text.length;
+
+  return segments.map((segment, index) => {
+    const take = Math.max(0, Math.min(segment.text.length, remaining));
+    remaining -= segment.text.length;
+
     return (
-      <span key={i} className={seg.className}>
-        {seg.text.slice(0, take)}
+      <span key={index} className={segment.className}>
+        {segment.text.slice(0, take)}
       </span>
     );
   });

@@ -54,6 +54,12 @@
     width: fit-content;
 }
 
+.interfaces__title-cursor {
+    display: inline-block;
+    margin-left: 2px;
+    animation: hero-blink 0.9s step-start infinite;
+}
+
 /* Cursor "|" das tech-tags — aparece só enquanto está digitando aquela linha */
 .typewriter-cursor::after {
     content: "|";
@@ -73,6 +79,44 @@
 @keyframes hero-blink {
     50% {
         opacity: 0;
+    }
+}
+
+/* Entrada mágica do conteúdo inferior da hero */
+.interfaces__wrapper--bottom .about__text-wrap,
+.interfaces__wrapper--bottom .interfaces__name-block {
+    opacity: 0;
+    transition:
+        opacity 650ms cubic-bezier(0.23, 1, 0.32, 1),
+        transform 650ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.interfaces__wrapper--bottom .about__text-wrap {
+    transform: translateX(-28px);
+}
+
+.interfaces__wrapper--bottom .interfaces__name-block {
+    transform: translateX(28px);
+}
+
+.interfaces__wrapper--bottom.interfaces__wrapper--visible .about__text-wrap,
+.interfaces__wrapper--bottom.interfaces__wrapper--visible .interfaces__name-block {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .interfaces__wrapper--bottom .about__text-wrap,
+    .interfaces__wrapper--bottom .interfaces__name-block {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .typewriter-cursor::after,
+    .typewriter-cursor--underline::after,
+    .interfaces__title-cursor {
+        animation: none;
     }
 }
 /* ============================================================
@@ -227,7 +271,7 @@ body.dark .about__text-wrap {
     font-weight: 300;
 }
 
-.tech-tags__name {
+.tech-tags__name.tag-title {
     color: #437dd7;
     font-weight: 500;
 }

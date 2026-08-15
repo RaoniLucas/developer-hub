@@ -51,7 +51,12 @@ li {
     font-weight: 300;
 }
 
-.tech-tags__name {
+.tech-tags__name.tag-title {
     color: #437dd7;
+    font-weight: 500;
+}
+
+.tech-tags__name {
+    color: #fff;
     font-weight: 500;
 }

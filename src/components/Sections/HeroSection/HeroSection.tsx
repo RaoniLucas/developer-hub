@@ -1,14 +1,12 @@
 import "./HeroSection.css";
 import { useFitToWidth } from "../../../hooks/useFitToWidth";
+import { useSectionVisibility } from "../../../hooks/useSectionVisibility";
 import {
   useTypewriterSequence,
   renderSegments,
   type Target,
 } from "../../../hooks/useTypewriter";
 
-/* ============================================================
-   DADOS DO TYPEWRITER
-   ============================================================ */
 const titleTargets: Target[] = [
   { segments: [{ text: "developer" }] },
   { segments: [{ text: "hub" }] },
@@ -18,66 +16,91 @@ const tagTargets: Target[] = [
   {
     segments: [
       { text: "<", className: "tech-tags__bracket" },
-      { text: "user-interface", className: "tech-tags__name" },
+      { text: "user-interface", className: "tech-tags__name tag-title" },
       { text: "></", className: "tech-tags__bracket" },
-      { text: "user-interface", className: "tech-tags__name" },
+      { text: "user-interface", className: "tech-tags__name tag-title" },
       { text: ">", className: "tech-tags__bracket" },
     ],
   },
   {
     segments: [
       { text: "<", className: "tech-tags__bracket" },
-      { text: "user-experience", className: "tech-tags__name" },
+      { text: "user-experience", className: "tech-tags__name tag-title" },
       { text: "></", className: "tech-tags__bracket" },
-      { text: "user-experience", className: "tech-tags__name" },
+      { text: "user-experience", className: "tech-tags__name tag-title" },
       { text: ">", className: "tech-tags__bracket" },
     ],
   },
 ];
 
-// título (índices 0,1) + tags (índices 2,3) digitados em uma única sequência
-const allTargets: Target[] = [...titleTargets, ...tagTargets];
-
 export function HeroSection() {
+  const { sectionRef, isVisible } = useSectionVisibility<HTMLElement>();
   const { containerRef: titleRef, fontSize } = useFitToWidth(
-    titleTargets.map((t) => t.segments.map((s) => s.text).join("")),
+    ["developer", "hub_"],
     { minSize: 24, maxSize: 500 }
   );
 
-  const { revealed, activeIndex } = useTypewriterSequence(allTargets, {
+  const titleTypewriter = useTypewriterSequence(titleTargets, {
     speed: 55,
     startDelay: 300,
     pause: 200,
   });
+  const { revealed: titleRevealed, activeIndex: titleActiveIndex } =
+    titleTypewriter;
+  const hubLength = titleTargets[1].segments[0].text.length;
+  const titleIsComplete =
+    titleActiveIndex >= 1 && titleRevealed[1] >= hubLength;
+  const tagsTypewriter = useTypewriterSequence(tagTargets, {
+    speed: 55,
+    startDelay: 0,
+    pause: 200,
+    enabled: isVisible && titleIsComplete,
+  });
+  const { revealed: tagRevealed, activeIndex: tagActiveIndex } = tagsTypewriter;
+  const developerLength = titleTargets[0].segments[0].text.length;
+  const showDeveloperCursor =
+    titleActiveIndex === 0 &&
+    titleRevealed[0] <= developerLength - 2;
 
   return (
-    <section className="interfaces">
+    <section ref={sectionRef} className="interfaces">
       <div className="interfaces__wrapper">
         <h2 className="interfaces__title" ref={titleRef} style={{ fontSize }}>
-          <span className={activeIndex === 0 ? "typewriter-cursor--underline" : undefined}>
-            {renderSegments(titleTargets[0].segments, revealed[0])}
+          <span>
+            {renderSegments(titleTargets[0].segments, titleRevealed[0])}
+            {showDeveloperCursor && (
+              <span className="interfaces__title-cursor">_</span>
+            )}
           </span>
-          {/* activeIndex >= 1: o cursor aparece assim que "_hub" começa a
-              ser digitado e continua piscando para sempre, mesmo depois
-              que as tech-tags já tiverem terminado de digitar */}
-          <span className={activeIndex >= 1 ? "typewriter-cursor--underline" : undefined}>
-            {renderSegments(titleTargets[1].segments, revealed[1])}
+          <span>
+            {renderSegments(titleTargets[1].segments, titleRevealed[1])}
+            {titleActiveIndex >= 1 && (
+              <span className="interfaces__title-cursor">_</span>
+            )}
           </span>
         </h2>
         <div className="tech-tags">
           <span
-            className={`tech-tags__group ${activeIndex === 2 ? "typewriter-cursor" : ""}`}
+            className={`tech-tags__group ${
+              tagActiveIndex === 0 ? "typewriter-cursor" : ""
+            }`}
           >
-            {renderSegments(tagTargets[0].segments, revealed[2])}
+            {renderSegments(tagTargets[0].segments, tagRevealed[0])}
           </span>
           <span
-            className={`tech-tags__group ${activeIndex === 3 ? "typewriter-cursor" : ""}`}
+            className={`tech-tags__group ${
+              tagActiveIndex === 1 ? "typewriter-cursor" : ""
+            }`}
           >
-            {renderSegments(tagTargets[1].segments, revealed[3])}
+            {renderSegments(tagTargets[1].segments, tagRevealed[1])}
           </span>
         </div>
       </div>
-      <div className="interfaces__wrapper interfaces__wrapper--bottom">
+      <div
+        className={`interfaces__wrapper interfaces__wrapper--bottom ${
+          isVisible ? "interfaces__wrapper--visible" : ""
+        }`}
+      >
         <p className="about__text-wrap">
           Sou estudante de Análise e Desenvolvimento de Sistemas e estou
           construindo minha trajetória com foco no desenvolvimento web. Ao longo
